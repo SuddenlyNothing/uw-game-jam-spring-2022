@@ -21,7 +21,7 @@ const BUTTON_H_CONTENT_MARGIN : int = 30
 const DEFAULT_FONT_SIZE : int = 28
 
 # Font used for buttons
-export(String, FILE, "*.ttf") var font_path : String
+export(String, FILE, "*.ttf") var font_path: String
 
 # True when a key is being remapped
 var is_mapping : bool = false
