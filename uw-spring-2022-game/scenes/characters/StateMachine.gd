@@ -8,6 +8,7 @@ var states = {}
 
 onready var parent = get_parent()
 
+
 # Calls below functions.
 func _physics_process(delta : float):
 	if state != null:
@@ -16,29 +17,34 @@ func _physics_process(delta : float):
 		if transition != null:
 			set_state(transition)
 
+
 # Contains state logic.
-func _state_logic(delta : float) -> void:
+func _state_logic(delta: float) -> void:
 	pass
 
+
 # Return value will be used to change state.
-func _get_transition(delta : float):
+func _get_transition(delta: float):
 	return null
+
 
 # Called on entering state.
 # new_state is the state being entered.
 # old_state is the state being exited.
-func _enter_state(new_state : String, old_state) -> void:
+func _enter_state(new_state: String, old_state) -> void:
 	pass
+
 
 # Called on exiting state.
 # old_state is the state being exited.
 # new_state is the state being entered.
-func _exit_state(old_state, new_state : String) -> void:
+func _exit_state(old_state, new_state: String) -> void:
 	pass
+
 
 # Sets state while calling _exit_state and _enter_state
 # If you want to call this method use call_deferred.
-func set_state(new_state : String) -> void:
+func set_state(new_state: String) -> void:
 	previous_state = state
 	state = new_state
 	
@@ -47,7 +53,8 @@ func set_state(new_state : String) -> void:
 	
 	_enter_state(new_state, previous_state)
 
+
 # Adds a state.
 # Should be called in the _ready function.
-func add_state(state_name : String) -> void:
+func add_state(state_name: String) -> void:
 	states[state_name] = state_name
