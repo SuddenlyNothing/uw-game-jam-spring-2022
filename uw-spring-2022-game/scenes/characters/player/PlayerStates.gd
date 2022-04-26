@@ -4,7 +4,6 @@ extends StateMachine
 func _ready() -> void:
 	add_state("idle")
 	add_state("walk")
-	add_state("trans")
 	add_state("dash")
 	add_state("death")
 	call_deferred("set_state", "idle")
@@ -18,9 +17,6 @@ func _state_logic(delta: float) -> void:
 			parent.set_anim("idle")
 		states.walk:
 			parent.move_walk(delta)
-			parent.set_anim("walk")
-		states.trans:
-			parent.move_trans(delta)
 			parent.set_anim("walk")
 		states.dash:
 			parent.move_dash(delta)
@@ -39,7 +35,7 @@ func _get_transition(delta: float):
 			if parent.velocity.length() > parent.trans_max_speed:
 				return states.dash
 		states.dash:
-			if parent.velocity.length() < parent.trans_max_speed:
+			if parent.velocity.length() < parent.walk_max_speed:
 				return states.walk
 	return null
 
@@ -53,8 +49,6 @@ func _enter_state(new_state: String, old_state) -> void:
 			pass
 		states.walk:
 			pass
-		states.trans:
-			pass
 		states.dash:
 			pass
 
@@ -67,8 +61,6 @@ func _exit_state(old_state, new_state: String) -> void:
 		states.idle:
 			pass
 		states.walk:
-			pass
-		states.trans:
 			pass
 		states.dash:
 			pass
