@@ -151,7 +151,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 5, 2 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 1 )
 
 [node name="PlayerStates" type="Node" parent="."]

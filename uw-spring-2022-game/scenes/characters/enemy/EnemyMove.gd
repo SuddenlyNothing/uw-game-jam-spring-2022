@@ -3,7 +3,7 @@ extends EnemyKnockback
 
 export(int) var move_speed
 
-var target_dir
+var move_dir
 var face_pos
 
 ### Anims needed:
@@ -14,5 +14,5 @@ var face_pos
 
 
 func move() -> void:
-	move_and_slide(move_speed * target_dir)
+	move_and_slide(move_speed * move_dir)
 	set_facing(face_pos)
