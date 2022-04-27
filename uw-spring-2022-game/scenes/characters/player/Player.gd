@@ -3,16 +3,16 @@ extends KinematicBody2D
 export(int) var idle_friction := 2000
 
 export(int) var walk_max_speed := 100
-export(int) var walk_acceleration := 1200
 export(int) var walk_friction := 2000
 
 export(int) var trans_max_speed := 200
-export(int) var trans_acceleration := 100
-export(int) var trans_friction := 800
+export(int) var trans_acceleration := 50
 
 export(int) var dash_max_speed := 400
 export(int) var dash_acceleration := 1200
-export(int) var dash_friction := 1200
+export(int) var dash_friction := 2000
+
+var walk_speed: float = 0
 
 var velocity := Vector2()
 var input := Vector2()
@@ -31,9 +31,16 @@ func _process(delta: float) -> void:
 
 
 func move_walk(delta: float) -> void:
-	_move_accelerated_within(delta, walk_acceleration, walk_max_speed, walk_friction)
-	if velocity.length() >= walk_max_speed and input.dot(velocity.normalized()) > 0.7:
-		_apply_acceleration(delta, trans_acceleration)
+	if not input:
+		walk_speed = 0
+		_apply_friction(delta, walk_friction)
+	elif walk_speed < walk_max_speed:
+		walk_speed = walk_max_speed
+		velocity = walk_speed * input
+	else:
+		walk_speed += trans_acceleration * delta
+		velocity = walk_speed * input
+	_move()
 
 
 func move_dash(delta: float) -> void:
@@ -69,15 +76,19 @@ func set_anim(anim_prefix: String) -> void:
 
 
 func _move_accelerated(delta: float, acceleration: int, friction: int) -> void:
-	_apply_acceleration(delta, acceleration)
-	_apply_friction(delta, friction)
+	if input:
+		_apply_acceleration(delta, acceleration)
+	else:
+		_apply_friction(delta, friction)
 	_move()
 
 
 func _move_accelerated_within(delta: float, acceleration: int, max_speed: int,
 			friction: int) -> void:
-	_apply_acceleration_within(delta, acceleration, max_speed)
-	_apply_friction(delta, friction)
+	if input:
+		_apply_acceleration_within(delta, acceleration, max_speed)
+	else:
+		_apply_friction(delta, friction)
 	_move()
 
 
@@ -91,15 +102,13 @@ func _apply_acceleration(delta: float, acceleration: int) -> void:
 
 func _apply_acceleration_within(delta: float, acceleration: int, max_speed: int) -> void:
 	var acceleration_amount := acceleration * delta
-	if velocity.length() < max_speed or input.dot(velocity.normalized()) < 1:
+	if velocity.distance_to(input * max_speed) < acceleration_amount:
+		velocity = input * max_speed
+	else:
 		velocity += acceleration_amount * velocity.direction_to(input * max_speed)
 
 
 func _apply_friction(delta: float, friction: int) -> void:
-#	if input != Vector2():
-#		return
-	if input.dot(velocity.normalized()) > 0:
-		return
 	var friction_amount := friction * delta
 	if velocity.length() <= friction_amount:
 		velocity = Vector2()

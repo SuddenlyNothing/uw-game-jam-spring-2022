@@ -30,7 +30,7 @@ func _get_transition(delta: float):
 			if parent.input != Vector2():
 				return states.walk
 		states.walk:
-			if parent.velocity == Vector2():
+			if parent.velocity == Vector2() and parent.input == Vector2():
 				return states.idle
 			if parent.velocity.length() > parent.trans_max_speed:
 				return states.dash
@@ -61,7 +61,7 @@ func _exit_state(old_state, new_state: String) -> void:
 		states.idle:
 			pass
 		states.walk:
-			pass
+			parent.walk_speed = 0
 		states.dash:
 			pass
 
