@@ -3,7 +3,7 @@ extends KinematicBody2D
 export(int) var idle_friction := 2000
 
 export(int) var walk_max_speed := 100
-export(int) var walk_friction := 2000
+export(int) var walk_friction := 1000
 
 export(int) var trans_max_speed := 200
 export(int) var trans_acceleration := 50
