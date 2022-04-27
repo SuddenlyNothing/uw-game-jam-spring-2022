@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/characters/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://scenes/characters/enemy/EnemyStates.gd" type="Script" id=2]
-[ext_resource path="res://assets/shaders/HitFlash.tres" type="Material" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 0.0, 0.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/hit_color = Color( 0.74902, 0.14902, 0.317647, 1 )
+shader_param/hit_strength = 0.0
 
 [node name="Enemy" type="KinematicBody2D" groups=["enemy"]]
 script = ExtResource( 1 )
@@ -13,7 +30,7 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Pivot" type="Node2D" parent="."]
-material = ExtResource( 3 )
+material = SubResource( 2 )
 
 [node name="ParticlePosition" type="Position2D" parent="Pivot"]
 

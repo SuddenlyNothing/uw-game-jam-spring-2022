@@ -1,3 +1,4 @@
+class_name Enemy
 extends KinematicBody2D
 
 export(int) var max_health: int = 3
@@ -14,8 +15,8 @@ onready var body_collision := $CollisionShape2D
 onready var hurtbox_collision := $Pivot/Hurtbox/CollisionShape2D
 
 ### Anims needed:
-### idle
-### death
+### idle +
+### death +
 
 func hit(damage: int, dir: Vector2) -> void:
 	if health <= 0:
