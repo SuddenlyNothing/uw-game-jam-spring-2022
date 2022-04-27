@@ -31,7 +31,7 @@ func _enter_state(new_state: String, old_state) -> void:
 			parent.play_anim("idle")
 		states.death:
 			parent.play_anim("death")
-			parent.disable_collision()
+			parent.set_collision_disabled(true)
 
 
 func _exit_state(old_state, new_state: String) -> void:

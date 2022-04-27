@@ -25,4 +25,7 @@ func _get_transition(delta: float):
 
 
 func _enter_state(new_state: String, old_state) -> void:
+	match new_state:
+		states.move:
+			parent.play_anim("move")
 	._enter_state(new_state, old_state)

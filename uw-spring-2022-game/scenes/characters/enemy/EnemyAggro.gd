@@ -5,6 +5,7 @@ var player: Node setget set_player
 var check_player := false
 
 onready var vision_cast := $VisionCast
+onready var vision := $Pivot/Vision
 
 ### Anims needed:
 ### idle
@@ -39,6 +40,11 @@ func set_move_props() -> void:
 func clear_move_props() -> void:
 	move_dir = null
 	face_pos = null
+
+
+func set_collision_disabled(val: bool) -> void:
+	vision.call_deferred("set_disabled", val)
+	.set_collision_disabled(val)
 
 
 func _on_Vision_body_entered(body: Node) -> void:

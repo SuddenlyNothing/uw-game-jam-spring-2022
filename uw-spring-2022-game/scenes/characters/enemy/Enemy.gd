@@ -48,9 +48,9 @@ func play_anim(anim: String) -> void:
 	anim_sprite.play(anim)
 
 
-func disable_collision() -> void:
-	hurtbox_collision.call_deferred("set_disabled", true)
-	body_collision.call_deferred("set_disabled", true)
+func set_collision_disabled(val: bool) -> void:
+	hurtbox_collision.call_deferred("set_disabled", val)
+	body_collision.call_deferred("set_disabled", val)
 
 
 func _on_AnimatedSprite_animation_finished() -> void:
