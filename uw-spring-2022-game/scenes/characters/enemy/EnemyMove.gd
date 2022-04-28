@@ -1,7 +1,7 @@
 class_name EnemyMove
 extends EnemyKnockback
 
-export(int) var move_speed
+export(int) var move_speed := 50
 
 var move_dir
 var face_pos
