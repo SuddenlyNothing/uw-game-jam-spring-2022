@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scenes/characters/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/player/player_walk_down.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/characters/player/player_walk_up.png" type="Texture" id=4]
 [ext_resource path="res://scenes/characters/player/PlayerStates.gd" type="Script" id=5]
 [ext_resource path="res://assets/characters/player/light.png" type="Texture" id=6]
+[ext_resource path="res://assets/characters/player/test/mc_1.png" type="Texture" id=7]
 
 [sub_resource type="AtlasTexture" id=27]
 atlas = ExtResource( 3 )
@@ -160,11 +161,20 @@ script = ExtResource( 5 )
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Pivot"]
+self_modulate = Color( 1, 1, 1, 0 )
 light_mask = 0
 frames = SubResource( 1 )
 animation = "idle_down"
 speed_scale = 2.0
 offset = Vector2( 0, -16 )
+
+[node name="Mc1" type="Sprite" parent="Pivot/AnimatedSprite"]
+light_mask = 0
+position = Vector2( 0, -16.408 )
+scale = Vector2( 0.08, 0.08 )
+texture = ExtResource( 7 )
+offset = Vector2( -14.426, 0 )
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )
