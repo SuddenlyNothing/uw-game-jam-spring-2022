@@ -35,7 +35,7 @@ func _get_transition(delta: float):
 			if parent.velocity.length() > parent.trans_max_speed:
 				return states.dash
 		states.dash:
-			if parent.velocity.length() < parent.walk_max_speed:
+			if parent.velocity.length() <= parent.walk_max_speed:
 				return states.walk
 	return null
 

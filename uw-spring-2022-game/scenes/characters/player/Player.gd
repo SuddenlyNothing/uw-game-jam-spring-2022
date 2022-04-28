@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+export(int) var min_light_scale := 1
+export(int) var max_light_scale := 4
+export(int) var light_lerp := 5
+
 export(int) var idle_friction := 2000
 
 export(int) var walk_max_speed := 100
@@ -17,17 +21,21 @@ var walk_speed: float = 0
 var velocity := Vector2()
 var input := Vector2()
 var face_dir := Vector2()
+var desired_light_scale := Vector2.ONE
 
 onready var anim_sprite := $Pivot/AnimatedSprite
 onready var pivot = $Pivot
 onready var player_states := $PlayerStates
 onready var state_label := $StateLabel
+onready var m_light_mask := $Light2DMask
+onready var m_light_add := $Light2DAdd
 
 
 func _process(delta: float) -> void:
 	_get_input()
 	_set_face_dir()
 	_set_facing()
+	_set_light_range(delta)
 
 
 func move_walk(delta: float) -> void:
@@ -37,14 +45,20 @@ func move_walk(delta: float) -> void:
 	elif walk_speed < walk_max_speed:
 		walk_speed = walk_max_speed
 		velocity = walk_speed * input
-	else:
+	elif Input.is_action_pressed("dash"):
 		walk_speed += trans_acceleration * delta
+		velocity = walk_speed * input
+	elif walk_speed > walk_max_speed:
+		walk_speed = walk_max_speed
+	else:
 		velocity = walk_speed * input
 	_move()
 
 
 func move_dash(delta: float) -> void:
 	_move_accelerated_within(delta, dash_acceleration, dash_max_speed, dash_friction)
+	if not Input.is_action_pressed("dash"):
+		velocity = velocity.clamped(walk_max_speed)
 
 
 func move_idle(delta: float) -> void:
@@ -128,6 +142,14 @@ func _set_facing() -> void:
 	if (face_dir.x < 0 and pivot.scale.x > 0) or\
 			(face_dir.x > 0 and pivot.scale.x < 0):
 		pivot.scale.x *= -1
+
+
+func _set_light_range(delta: float) -> void:
+	desired_light_scale = Vector2.ONE * max(range_lerp(velocity.length(), walk_max_speed,
+			dash_max_speed, min_light_scale, max_light_scale), min_light_scale)
+	var new_scale = lerp(m_light_add.scale, desired_light_scale, clamp(light_lerp * delta, 0, 1))
+	m_light_add.scale = new_scale
+	m_light_mask.scale = new_scale
 
 
 func _play_anim(anim: String) -> void:
