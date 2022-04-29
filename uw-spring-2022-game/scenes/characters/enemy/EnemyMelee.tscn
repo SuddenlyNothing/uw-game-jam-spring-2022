@@ -32,6 +32,8 @@ script = ExtResource( 3 )
 material = SubResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="Pivot" index="4"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox" index="0"]
 
