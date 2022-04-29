@@ -10,7 +10,7 @@ onready var enemy_states := $EnemyStates
 onready var pivot := $Pivot
 onready var anim_sprite := $Pivot/AnimatedSprite
 onready var hit_flash_tween := $HitFlashTween
-onready var particle_position := $ParticlePosition
+onready var particle_position := $Pivot/ParticlePosition
 onready var body_collision := $CollisionShape2D
 onready var hurtbox_collision := $Pivot/Hurtbox/CollisionShape2D
 
@@ -53,6 +53,10 @@ func set_collision_disabled(val: bool) -> void:
 	body_collision.call_deferred("set_disabled", val)
 
 
-func _on_AnimatedSprite_animation_finished() -> void:
+func anim_finish() -> void:
 	if anim_sprite.animation == "death":
 		die()
+
+
+func _on_AnimatedSprite_animation_finished() -> void:
+	anim_finish()

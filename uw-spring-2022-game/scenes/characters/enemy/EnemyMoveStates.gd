@@ -16,10 +16,10 @@ func _state_logic(delta: float) -> void:
 func _get_transition(delta: float):
 	match state:
 		states.idle:
-			if parent.target_dir != null:
+			if parent.move_dir != null:
 				return states.move
 		states.move:
-			if parent.target_dir == null:
+			if parent.move_dir == null:
 				return states.idle
 	._get_transition(delta)
 

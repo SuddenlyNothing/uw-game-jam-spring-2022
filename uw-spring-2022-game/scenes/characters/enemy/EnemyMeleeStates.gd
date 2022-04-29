@@ -11,7 +11,7 @@ func _get_transition(delta: float):
 		states.move:
 			if parent.is_player_in_hitbox():
 				return states.attack
-	._get_transition(delta)
+	return ._get_transition(delta)
 
 
 func _enter_state(new_state: String, old_state) -> void:

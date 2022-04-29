@@ -38,6 +38,10 @@ func _process(delta: float) -> void:
 	_set_light_range(delta)
 
 
+func hit(damage: int, dir: Vector2) -> void:
+	prints("player got hit for", damage, "damage")
+
+
 func move_walk(delta: float) -> void:
 	if not input:
 		walk_speed = 0

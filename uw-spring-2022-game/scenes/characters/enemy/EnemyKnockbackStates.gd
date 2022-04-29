@@ -21,7 +21,7 @@ func _get_transition(delta: float):
 		states.knockback:
 			if not parent.knockback_velocity:
 				return states.knockback
-	return _get_transition(delta)
+	return ._get_transition(delta)
 
 
 func _enter_state(new_state: String, old_state) -> void:

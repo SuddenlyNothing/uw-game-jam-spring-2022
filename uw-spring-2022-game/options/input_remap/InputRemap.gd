@@ -140,7 +140,7 @@ func set_key_button_font_size(key_button: ButtonSFX, text: String) -> void:
 	# Couldn't find a better way to change font size for single button
 	var new_font = DynamicFont.new()
 	var new_data = DynamicFontData.new()
-	var new_font_size : int = floor(min(font.size / font_lines,
+	var new_font_size: int = floor(min(font.size / font_lines,
 			DEFAULT_FONT_SIZE))
 	new_data.font_path = font_path
 	new_font.font_data = new_data

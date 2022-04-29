@@ -19,7 +19,7 @@ func attack() -> void:
 	for body in hitbox.get_overlapping_bodies():
 		if not body.is_in_group("player"):
 			return
-		body.hit(damage, pivot.scale)
+		body.hit(damage, Vector2.RIGHT * pivot.scale.x)
 
 
 func is_player_in_hitbox() -> bool:
@@ -38,7 +38,7 @@ func set_collision_disabled(val: bool) -> void:
 	.set_collision_disabled(val)
 
 
-func _on_AnimatedSprite_frame_changed() -> void:
+func anim_frame_change() -> void:
 	match anim_sprite.animation:
 		"attack":
 			match anim_sprite.frame:
@@ -46,7 +46,11 @@ func _on_AnimatedSprite_frame_changed() -> void:
 					attack()
 
 
-func _on_AnimatedSprite_animation_finished() -> void:
+func _on_AnimatedSprite_frame_changed() -> void:
+	anim_frame_change()
+
+
+func anim_finish() -> void:
 	if anim_sprite.animation == "attack":
 		enemy_states.call_deferred("set_state", "idle")
-	._on_AnimatedSprite_animation_finished()
+	.anim_finish()

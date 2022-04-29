@@ -24,12 +24,6 @@ shader_param/hit_strength = 0.0
 
 [node name="EnemyMelee" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-max_health = 3
-death_particles = ""
-knockback_force = 500
-knockback_friction = 2000
-knockback_modifier = 0.3
-move_speed = 50
 
 [node name="EnemyStates" parent="." index="0"]
 script = ExtResource( 3 )
