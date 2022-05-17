@@ -1,156 +1,194 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/characters/player/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/characters/player/player_walk_down.png" type="Texture" id=2]
-[ext_resource path="res://assets/characters/player/player_walk_right.png" type="Texture" id=3]
-[ext_resource path="res://assets/characters/player/player_walk_up.png" type="Texture" id=4]
+[ext_resource path="res://assets/characters/player/fire_front_run.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/player/fire_front_idle.png" type="Texture" id=3]
 [ext_resource path="res://scenes/characters/player/PlayerStates.gd" type="Script" id=5]
 [ext_resource path="res://assets/characters/player/light.png" type="Texture" id=6]
-[ext_resource path="res://assets/characters/player/test/mc_1.png" type="Texture" id=7]
+[ext_resource path="res://assets/characters/player/particle.png" type="Texture" id=7]
+[ext_resource path="res://assets/characters/player/fire_back_idle.png" type="Texture" id=8]
+[ext_resource path="res://assets/characters/player/fire_back_run.png" type="Texture" id=9]
+[ext_resource path="res://assets/characters/player/fire_side_run.png" type="Texture" id=10]
+[ext_resource path="res://assets/characters/player/fire_side_idle.png" type="Texture" id=11]
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 10 )
+region = Rect2( 55, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 3 )
-region = Rect2( 64, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 3 )
-region = Rect2( 96, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 10 )
+region = Rect2( 110, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 3 )
-region = Rect2( 128, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 3 )
-region = Rect2( 160, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 11 )
+region = Rect2( 55, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 3 )
-region = Rect2( 192, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 3 )
-region = Rect2( 224, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 2 )
-region = Rect2( 32, 0, 32, 32 )
+region = Rect2( 0, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=34]
 atlas = ExtResource( 2 )
-region = Rect2( 64, 0, 32, 32 )
+region = Rect2( 55, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=35]
 atlas = ExtResource( 2 )
-region = Rect2( 96, 0, 32, 32 )
+region = Rect2( 110, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
-region = Rect2( 128, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 2 )
-region = Rect2( 160, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 8 )
+region = Rect2( 55, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
-region = Rect2( 192, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
-region = Rect2( 224, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 3 )
+region = Rect2( 55, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 9 )
+region = Rect2( 55, 0, 55, 55 )
 
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 4 )
-region = Rect2( 64, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 4 )
-region = Rect2( 96, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 4 )
-region = Rect2( 160, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 4 )
-region = Rect2( 192, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 4 )
-region = Rect2( 224, 0, 32, 32 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 32, 32 )
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 9 )
+region = Rect2( 110, 0, 55, 55 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ) ],
+"frames": [ SubResource( 44 ), SubResource( 43 ), SubResource( 45 ), SubResource( 43 ) ],
 "loop": true,
 "name": "walk_right",
-"speed": 5.0
+"speed": 3.0
 }, {
-"frames": [ SubResource( 27 ) ],
+"frames": [ SubResource( 46 ), SubResource( 47 ) ],
 "loop": true,
 "name": "idle_right",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 2 ) ],
+"frames": [ SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 34 ) ],
 "loop": true,
 "name": "walk_down",
-"speed": 5.0
+"speed": 3.0
 }, {
-"frames": [ SubResource( 28 ) ],
+"frames": [ SubResource( 48 ), SubResource( 49 ) ],
 "loop": true,
 "name": "idle_up",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 26 ) ],
+"frames": [ SubResource( 31 ), SubResource( 32 ) ],
 "loop": true,
 "name": "idle_down",
-"speed": 5.0
+"speed": 2.0
 }, {
-"frames": [ SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 18 ) ],
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 41 ) ],
 "loop": true,
 "name": "walk_up",
-"speed": 5.0
+"speed": 3.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=29]
 extents = Vector2( 7, 6 )
+
+[sub_resource type="CanvasItemMaterial" id=30]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=36]
+offsets = PoolRealArray( 0.0543478, 0.0597826, 0.472826, 0.478261, 0.565217 )
+colors = PoolColorArray( 1, 0.784314, 0.403922, 1, 0.976471, 0.611765, 0.341176, 1, 0.976471, 0.611765, 0.341176, 1, 0.968627, 0.423529, 0.305882, 1, 0.968627, 0.423529, 0.305882, 1 )
+
+[sub_resource type="Shader" id=38]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform int intensity : hint_range(0,200); 
+uniform float precision : hint_range(0,0.02);
+uniform vec4 outline_color : hint_color;
+
+varying vec2 o;
+varying vec2 f;
+
+void vertex()
+{
+	o = VERTEX;
+	vec2 uv = (UV - 0.5);
+	VERTEX += uv * float(intensity);
+	f = VERTEX;
+}
+
+void fragment()
+{
+	ivec2 t = textureSize(TEXTURE, 0);
+	vec2 regular_uv;
+	regular_uv.x = UV.x + (f.x - o.x)/float(t.x);
+	regular_uv.y = UV.y + (f.y - o.y)/float(t.y);
+	
+	vec4 regular_color = texture(TEXTURE, regular_uv);
+	if((regular_uv.x < 0.0 || regular_uv.x > 1.0) || (regular_uv.y < 0.0 || regular_uv.y > 1.0) || regular_color.a <=0.25){
+		regular_color = vec4(0.0); 
+	}
+	
+	vec2 ps = TEXTURE_PIXEL_SIZE * float(intensity) * precision;
+	
+	vec4 final_color = regular_color;
+	if (regular_color.a <= 0.0)
+	{
+		for(int x = -1; x <= 1; x += 1){
+			for(int y = -1; y <= 1; y += 1){
+				//Get the X and Y offset from this
+				if ((x==0 && y==0) || (x!=0 && y != 0))
+					continue;
+					
+				vec2 outline_uv = regular_uv + vec2(float(x) * ps.x, float(y) * ps.y); 
+				
+				//Sample here, if we are out of bounds then fail
+				vec4 outline_sample = texture(TEXTURE, outline_uv);
+				if((outline_uv.x < 0.0 || outline_uv.x > 1.0) || (outline_uv.y < 0.0 || outline_uv.y > 1.0)){
+					//We aren't a real color
+					outline_sample = vec4(0);
+				}
+				
+				//Is our sample empty? Is there something nearby?
+				if(outline_sample.a > final_color.a){
+					final_color = outline_color;
+				}
+			}
+		}
+	}
+	COLOR = final_color; 
+}"
+
+[sub_resource type="ShaderMaterial" id=39]
+shader = SubResource( 38 )
+shader_param/intensity = 50
+shader_param/precision = 0.02
+shader_param/outline_color = Color( 0.392157, 0.0235294, 0, 1 )
+
+[sub_resource type="ViewportTexture" id=51]
+viewport_path = NodePath("FireViewport")
+
+[sub_resource type="ViewportTexture" id=52]
+viewport_path = NodePath("EyeViewport")
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
@@ -162,19 +200,13 @@ script = ExtResource( 5 )
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Pivot"]
-self_modulate = Color( 1, 1, 1, 0 )
+visible = false
 light_mask = 0
 frames = SubResource( 1 )
 animation = "idle_down"
 speed_scale = 2.0
-offset = Vector2( 0, -16 )
-
-[node name="Mc1" type="Sprite" parent="Pivot/AnimatedSprite"]
-light_mask = 0
-position = Vector2( 0, -20.228 )
-scale = Vector2( 0.08, 0.08 )
-texture = ExtResource( 7 )
-flip_h = true
+playing = true
+offset = Vector2( 0.5, -14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -6 )
@@ -205,3 +237,73 @@ color = Color( 1, 0.811765, 0.662745, 1 )
 range_layer_min = -100
 range_item_cull_mask = 2
 shadow_enabled = true
+
+[node name="FireViewport" type="Viewport" parent="."]
+size = Vector2( 350, 350 )
+own_world = true
+transparent_bg = true
+disable_3d = true
+usage = 1
+render_target_v_flip = true
+gui_disable_input = true
+
+[node name="FireParticles" type="CPUParticles2D" parent="FireViewport"]
+light_mask = 0
+material = SubResource( 30 )
+position = Vector2( 175, 175 )
+amount = 200
+lifetime = 0.5
+lifetime_randomness = 0.5
+local_coords = false
+draw_order = 1
+texture = ExtResource( 7 )
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2( 0, -1 )
+spread = 90.0
+gravity = Vector2( 0, -400 )
+initial_velocity = 20.0
+initial_velocity_random = 1.0
+linear_accel = -100.0
+color_ramp = SubResource( 36 )
+anim_speed = 1.0
+
+[node name="FireCamera" type="Camera2D" parent="FireViewport/FireParticles"]
+current = true
+
+[node name="EyeViewport" type="Viewport" parent="."]
+size = Vector2( 20, 20 )
+own_world = true
+transparent_bg = true
+disable_3d = true
+usage = 0
+render_target_v_flip = true
+
+[node name="EyeParticles" type="CPUParticles2D" parent="EyeViewport"]
+position = Vector2( 10, 10 )
+amount = 5
+lifetime = 0.1
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 1 )
+gravity = Vector2( 0, -20 )
+
+[node name="Outline" type="Node2D" parent="."]
+material = SubResource( 39 )
+
+[node name="Fire" type="Sprite" parent="Outline"]
+show_behind_parent = true
+light_mask = 0
+use_parent_material = true
+position = Vector2( 0, -15 )
+texture = SubResource( 51 )
+
+[node name="Eye" type="Sprite" parent="Outline"]
+use_parent_material = true
+position = Vector2( -3, -15 )
+texture = SubResource( 52 )
+
+[node name="Eye2" type="Sprite" parent="Outline"]
+use_parent_material = true
+position = Vector2( 4, -15 )
+scale = Vector2( -1, -1 )
+texture = SubResource( 52 )

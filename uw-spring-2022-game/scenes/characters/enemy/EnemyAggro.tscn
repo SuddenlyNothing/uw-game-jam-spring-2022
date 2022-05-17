@@ -22,8 +22,8 @@ shader = SubResource( 1 )
 shader_param/hit_color = Color( 0.74902, 0.14902, 0.317647, 1 )
 shader_param/hit_strength = 0.0
 
-[node name="EnemyAggro" instance=ExtResource( 1 )]
-collision_layer = 1
+[node name="EnemyAggro" groups=["enemy"] instance=ExtResource( 1 )]
+collision_layer = 4
 script = ExtResource( 2 )
 
 [node name="EnemyStates" parent="." index="0"]
@@ -31,10 +31,6 @@ script = ExtResource( 3 )
 
 [node name="Pivot" parent="." index="2"]
 material = SubResource( 2 )
-
-[node name="Hurtbox" parent="Pivot" index="2"]
-collision_layer = 1
-collision_mask = 1
 
 [node name="Vision" type="Area2D" parent="Pivot" index="3"]
 collision_layer = 0
@@ -46,5 +42,6 @@ collision_mask = 2
 position = Vector2( 0, -2 )
 collision_mask = 2
 
+[connection signal="animation_finished" from="Pivot/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Pivot/Vision" to="." method="_on_Vision_body_entered"]
 [connection signal="body_exited" from="Pivot/Vision" to="." method="_on_Vision_body_exited"]

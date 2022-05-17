@@ -14,7 +14,7 @@ export(int) var trans_acceleration := 50
 
 export(int) var dash_max_speed := 400
 export(int) var dash_acceleration := 1200
-export(int) var dash_friction := 2000
+export(int) var dash_friction := 800
 
 var walk_speed: float = 0
 
@@ -29,6 +29,7 @@ onready var player_states := $PlayerStates
 onready var state_label := $StateLabel
 onready var m_light_mask := $Light2DMask
 onready var m_light_add := $Light2DAdd
+onready var fire_particles := $FireViewport/FireParticles
 
 
 func _process(delta: float) -> void:
@@ -56,18 +57,20 @@ func move_walk(delta: float) -> void:
 		walk_speed = walk_max_speed
 	else:
 		velocity = walk_speed * input
-	_move()
+	_move(delta)
 
 
 func move_dash(delta: float) -> void:
-	_move_accelerated_within(delta, dash_acceleration, dash_max_speed, dash_friction)
 	if not Input.is_action_pressed("dash"):
-		velocity = velocity.clamped(walk_max_speed)
+		_apply_friction(delta, dash_friction)
+		_move(delta)
+	else:
+		_move_accelerated_within(delta, dash_acceleration, dash_max_speed, dash_friction)
 
 
 func move_idle(delta: float) -> void:
 	_apply_friction(delta, idle_friction)
-	_move()
+	_move(delta)
 
 
 func set_anim(anim_prefix: String) -> void:
@@ -98,7 +101,7 @@ func _move_accelerated(delta: float, acceleration: int, friction: int) -> void:
 		_apply_acceleration(delta, acceleration)
 	else:
 		_apply_friction(delta, friction)
-	_move()
+	_move(delta)
 
 
 func _move_accelerated_within(delta: float, acceleration: int, max_speed: int,
@@ -107,11 +110,12 @@ func _move_accelerated_within(delta: float, acceleration: int, max_speed: int,
 		_apply_acceleration_within(delta, acceleration, max_speed)
 	else:
 		_apply_friction(delta, friction)
-	_move()
+	_move(delta)
 
 
-func _move() -> void:
+func _move(delta: float) -> void:
 	velocity = move_and_slide(velocity)
+	fire_particles.position += velocity * delta
 
 
 func _apply_acceleration(delta: float, acceleration: int) -> void:

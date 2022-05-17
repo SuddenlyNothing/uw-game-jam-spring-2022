@@ -30,7 +30,8 @@ tile_data = PoolIntArray( 327690, 0, 8, 327691, 0, 10, 327692, 0, 11, 393226, 0,
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 329, 333 )
+position = Vector2( 680, 312 )
+collision_mask = 3
 
 [node name="Icon" type="Sprite" parent="YSort"]
 position = Vector2( 462, 210 )
@@ -43,4 +44,4 @@ texture = ExtResource( 2 )
 offset = Vector2( 0, -32 )
 
 [node name="Hound" parent="YSort" instance=ExtResource( 6 )]
-position = Vector2( 516, 208 )
+death_particles = "res://scenes/Demo.tscn"
